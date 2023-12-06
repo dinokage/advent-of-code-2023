@@ -4,7 +4,7 @@ import subprocess
 import sys
 import requests
 
-SESSION = '53616c7465645f5fa0b49e75543bf2fd6ded0c43e4aab9c9b129bbab03784a4a317152c1fb049c29fa1a0513320165530ec3c5eb6eb589f241072810d3255244'
+SESSION = '<session-id>'
 useragent = 'https://github.com/jonathanpaulson/AdventOfCode/blob/master/get_input.py by jonathanpaulson@gmail.com'
 
 parser = argparse.ArgumentParser(description='Read input')
