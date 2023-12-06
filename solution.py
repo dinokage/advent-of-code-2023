@@ -25,8 +25,10 @@ for id, res in d.items():
         for color in colors:
             num, name = map(str, color.strip().split())
             counts[name]=max(counts[name],int(num))
-    if counts['red']<=12 and counts['green']<=13 and counts['blue']<=14:
-        ans+=int(id)
+    # if counts['red']<=12 and counts['green']<=13 and counts['blue']<=14:
+    #     ans+=int(id)
+    x = counts['red']*counts['green']*counts['blue']
+    ans+=x
 
 
 print(ans)
