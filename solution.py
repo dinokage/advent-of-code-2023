@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from collections import defaultdict
 import regex as re
 file_path = 'inputfile.txt' 
 
@@ -7,19 +8,28 @@ with open(file_path, 'r') as file:
     multiline_text = file.read()
 # multiline_text='''twone
 # '''
-ans=0
-
-digits = {'one':'o1e', 'two':'t2o', 'three':'t3e', 'four':'f4r', 'five':'f5e', 'six':'s6x', 'seven':'s7n', 'eight':'e8t', 'nine':'n9e'}
 
 ip = list(map(str, multiline_text.split('\n')))
 # print(ip)
-for word in ip[-2::-1]:
-    for key, value in digits.items():
-        word = word.replace(str(key), str(value))
-    temp = [int(match) for match in re.findall(r'\d', word)]
-    print(temp)
-    # if temp==[]:
-    #     break
-    num = 10*temp[0] + temp[-1]
-    ans+=num
+d = dict()
+for res in ip[-2::-1]:
+    game, outcomes = map(str, res.split(':'))
+    gameID = int(game.split()[1].strip())
+    outcomes=list(map(str, outcomes.split(';')))
+    d[gameID]=outcomes
+ans = 0
+for id, res in d.items():
+    counts=defaultdict(int)
+    for outcome in res:
+        colors = outcome.split(',')
+        for color in colors:
+            num, name = map(str, color.strip().split())
+            counts[name]=max(counts[name],int(num))
+    if counts['red']<=12 and counts['green']<=13 and counts['blue']<=14:
+        ans+=int(id)
+
+
 print(ans)
+
+# print(d)
+
